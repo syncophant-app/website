@@ -14,6 +14,7 @@
 
 - [Website](https://syncophant.app/)
 - [Source code](https://github.com/syncophant-app/macos)
+- [Download for Mac](https://github.com/syncophant-app/macos/releases/latest/download/Syncophant.dmg)
 - [Latest release](https://github.com/syncophant-app/macos/releases/latest)
 - [Project status](https://github.com/syncophant-app/macos/blob/main/docs/STATUS.md)
 - [License](https://github.com/syncophant-app/macos/blob/main/LICENSE)

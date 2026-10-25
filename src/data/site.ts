@@ -4,6 +4,8 @@
 export const links = {
   repo: "https://github.com/syncophant-app/macos",
   releases: "https://github.com/syncophant-app/macos/releases/latest",
+  /** Stable asset name uploaded by the macos repo's release workflow. */
+  download: "https://github.com/syncophant-app/macos/releases/latest/download/Syncophant.dmg",
   license: "https://github.com/syncophant-app/macos/blob/main/LICENSE",
   status: "https://github.com/syncophant-app/macos/blob/main/docs/STATUS.md",
 } as const;
