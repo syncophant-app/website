@@ -1,6 +1,6 @@
 ---
 /**
- * A Finder window with a Storage Box mounted by Syncophant.
+ * A Finder window with remote storage added by Syncophant.
  * Illustration for the mockup; swap for a real screenshot before launch
  * (the design system shows the product only in real screenshots).
  */
@@ -37,7 +37,7 @@ const favorites = [
 ] as const;
 ---
 
-<figure class="finder" aria-label="Finder showing a Storage Box added by Syncophant, with a status for every file">
+<figure class="finder" aria-label="Finder showing remote storage added by Syncophant, with a status for every file">
   <aside class="finder__sidebar" aria-hidden="true">
     <div class="finder__lights"><i></i><i></i><i></i></div>
     <p class="finder__group">Favorites</p>
@@ -56,7 +56,7 @@ const favorites = [
       <li><Icon name="drive" size={15} />Macintosh HD</li>
       <li class="is-selected">
         <Mark height={11} label="" />
-        Storage Box
+        Home Server
         <Icon name="eject" size={13} class="finder__eject" />
       </li>
     </ul>
@@ -109,7 +109,7 @@ const favorites = [
 
     <div class="finder__pathbar" aria-hidden="true">
       <Mark height={9} label="" />
-      Storage Box
+      Home Server
       <span class="muted">›</span>
       <FileIcon kind="folder" size={12} />
       Documents

@@ -26,7 +26,7 @@ import Status from "../Status.astro";
             <span class="drop__icon"><Mark height={12} label="" /></span>
           </div>
           <div class="drop__panel">
-            <p class="frag__title">Drop to upload to Storage Box</p>
+            <p class="frag__title">Drop to upload to Home Server</p>
             <div class="drop__tiles">
               <span><FileIcon kind="folder" size={22} />Photos 2026</span>
               <span class="is-target"><FileIcon kind="folder" size={22} />Invoices</span>
@@ -36,7 +36,7 @@ import Status from "../Status.astro";
         </div>
       </div>
       <h3 class="t-label">Drop files on the menu bar</h3>
-      <p class="t-small muted">Pick a folder on your box and they upload from there.</p>
+      <p class="t-small muted">Pick a folder on your storage and they upload there.</p>
     </li>
 
     <!-- Keep on this Mac -->
@@ -65,12 +65,12 @@ import Status from "../Status.astro";
           <Status state="verified" />
           <dl class="verify__sums">
             <div><dt>This Mac</dt><dd>9f2c 41ab 70d3 … e07d</dd></div>
-            <div><dt>Your box</dt><dd>9f2c 41ab 70d3 … e07d</dd></div>
+            <div><dt>Your storage</dt><dd>9f2c 41ab 70d3 … e07d</dd></div>
           </dl>
         </div>
       </div>
       <h3 class="t-label">Checked with SHA-256</h3>
-      <p class="t-small muted">An upload counts as verified only when your box reports the same checksum as this Mac.</p>
+      <p class="t-small muted">An upload counts as verified only when the copy on your storage has the same checksum as this Mac.</p>
     </li>
 
     <!-- Conflicts -->
@@ -133,7 +133,7 @@ import Status from "../Status.astro";
       </div>
       <h3 class="t-label">Undo a delete</h3>
       <p class="t-small muted">
-        On supported storage, deleted items go to a trash on your box and come back to where they were.
+        On supported storage, deleted items go to a trash on your storage and come back to where they were.
       </p>
     </li>
   </ul>
@@ -188,6 +188,9 @@ import Status from "../Status.astro";
   }
 
   .frag__row--quiet {
+    color: var(--ink-muted);
+  }
+  .frag__row--quiet :global(.fi) {
     opacity: 0.72;
   }
 

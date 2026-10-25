@@ -3,14 +3,14 @@ import Status from "../Status.astro";
 import type { FileState } from "../../data/site";
 
 const states: { state: FileState; meaning: string }[] = [
-  { state: "remote", meaning: "Stored on your box. It downloads when you open it." },
+  { state: "remote", meaning: "Lives on your storage. It downloads when you open it." },
   { state: "uploading", meaning: "On its way. Pause it, and it picks up where it stopped." },
-  { state: "verifying", meaning: "Your box is computing the file's SHA-256 to compare with this Mac." },
+  { state: "verifying", meaning: "The copy on your storage is being checked against this Mac's SHA-256." },
   { state: "verified", meaning: "Both checksums matched. Now the upload counts as done." },
-  { state: "unverified", meaning: "The file arrived, but this server can't check it. Syncophant says so instead of guessing." },
+  { state: "unverified", meaning: "The file arrived, but its checksum couldn't be confirmed. Syncophant says so instead of guessing." },
   { state: "conflict", meaning: "Two edits met. Neither one was overwritten." },
   { state: "kept", meaning: "Stays downloaded, so you can use it offline." },
-  { state: "failed", meaning: "Nothing on your box was replaced, and the reason is always shown." },
+  { state: "failed", meaning: "Nothing on your storage was replaced, and the reason is always shown." },
 ];
 ---
 
@@ -19,8 +19,8 @@ const states: { state: FileState; meaning: string }[] = [
     <div class="section-head">
       <h2 id="states-title" class="t-title">Every file says where it lives.</h2>
       <p>
-        The same few words in Finder, in the app and in the menu bar. A file is only called verified when your box has
-        checked it.
+        The same few words in Finder, in the app and in the menu bar. A file is only called verified once the copy on your
+        storage has been checked.
       </p>
     </div>
   </div>

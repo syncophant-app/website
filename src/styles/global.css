@@ -25,7 +25,6 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "ss01" 0;
   overflow-x: hidden;
 }
 
@@ -73,15 +72,6 @@ button {
 ::selection {
   background: var(--ink);
   color: var(--paper);
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 /* ---------- Type scale (Brand group in tokens.json) ---------- */

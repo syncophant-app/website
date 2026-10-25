@@ -26,8 +26,9 @@ Tokens live in `src/styles/tokens.css`. Dark mode follows the system and can be 
 
 - Replace the drawn Finder window, menu bar panel and feature fragments with real screenshots of the app. The design system shows the product only in real screenshots; the drawings use real status wording but sample files.
 - Point the download buttons at the release you want (`src/data/site.ts`; currently GitHub's latest release).
-- Add an Open Graph image (the brand kit's `social-card-*` art, or a monochrome version of it).
-- Re-check every claim against `docs/STATUS.md`. WebDAV, S3 and SMB are described as "in early testing".
+- Regenerate `public/og.png` (1200×630) and `public/apple-touch-icon.png` if the tagline or hero changes. They were captured from the site's own components; swap in the brand kit's `social-card-*` art if you prefer it.
+- Keep `public/llms.txt` and the FAQ structured data (built from `questions` in `src/data/site.ts`) in step with the page.
+- Re-check every claim against `docs/STATUS.md`. The site lists SFTP, WebDAV, S3-compatible and SMB as supported, and mentions Hetzner only as a guided setup.
 
 ## Structure
 

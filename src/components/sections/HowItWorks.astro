@@ -2,12 +2,12 @@
 const steps = [
   {
     title: "Connect your storage",
-    body: "Paste a Hetzner API token and Syncophant lists your boxes. It can make a sub-account that only reaches one folder. Or enter any SFTP server, with a password, a private key or your SSH agent.",
-    detail: "u123456.your-storagebox.de, port 23",
+    body: "Pick SFTP, WebDAV, S3-compatible or SMB and sign in. SFTP takes a password, a private key or your SSH agent.",
+    detail: "files.example.com, port 22",
   },
   {
-    title: "Trust the host key",
-    body: "Compare the fingerprint with the one your provider shows, then choose Trust this key. If the key ever changes, Syncophant stops before it signs in.",
+    title: "Check who you're talking to",
+    body: "For SFTP, compare the host key with the one your provider shows, then choose Trust this key. If it ever changes, Syncophant stops before it signs in. WebDAV and S3 only connect over HTTPS, and SMB shares must require encryption.",
     detail: "SHA256:7Lx0q2VbT9cJm4…Rk8w",
   },
   {
@@ -47,7 +47,6 @@ const steps = [
   .steps {
     display: grid;
     gap: var(--space-xl);
-    counter-reset: step;
   }
 
   .step {

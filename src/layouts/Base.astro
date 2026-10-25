@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { site } from "../data/site";
+import { links, questions, site } from "../data/site";
 
 interface Props {
   title?: string;
@@ -8,7 +8,49 @@ interface Props {
 }
 
 const { title = `${site.name}: ${site.tagline}`, description = site.description } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
+const base = Astro.site ?? site.url;
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImage = new URL(site.ogImage, base).href;
+
+// Structured data for search and answer engines. Only facts the page states.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: `${site.url}/`,
+      name: site.name,
+      description,
+      inLanguage: "en",
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${site.url}/#app`,
+      name: site.name,
+      description,
+      url: `${site.url}/`,
+      image: ogImage,
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: site.requirement.replace(" or later", ""),
+      softwareRequirements: site.requirement,
+      downloadUrl: links.releases,
+      license: links.license,
+      isAccessibleForFree: true,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      sameAs: [links.repo],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${site.url}/#faq`,
+      mainEntity: questions.map(({ q, a }) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -23,14 +65,28 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
     <meta name="theme-color" content="#eef1f6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0c0e13" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <link rel="preload" href="/fonts/Onest-Variable.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={site.ogImageAlt} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <slot />

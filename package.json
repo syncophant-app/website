@@ -11,6 +11,6 @@
     "astro": "ASTRO_TELEMETRY_DISABLED=1 astro"
   },
   "dependencies": {
-    "astro": "7.3.8"
+    "astro": "7.4.2"
   }
 }

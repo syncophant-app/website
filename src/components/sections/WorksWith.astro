@@ -1,12 +1,20 @@
 ---
 const providers = [
   {
-    name: "Hetzner Storage Box",
-    body: "Paste an API token. Syncophant finds your boxes, connects over SFTP on port 23 and can limit itself to one folder with a sub-account.",
+    name: "SFTP",
+    body: "Any server you can reach over SSH, from a NAS to a VPS. Sign in with a password, a private key or your SSH agent. The server needs to run sha256sum, so uploads can be verified.",
   },
   {
-    name: "Any SFTP server",
-    body: "Sign in with a password, a private key or your SSH agent. The server needs to run sha256sum, so uploads can be verified.",
+    name: "WebDAV",
+    body: "WebDAV servers over HTTPS. Syncophant reads the copy back to check each upload.",
+  },
+  {
+    name: "S3-compatible storage",
+    body: "Buckets on any S3-compatible service, over HTTPS. S3 can't rename in one step, so Syncophant copies instead, and the trash is off there.",
+  },
+  {
+    name: "SMB",
+    body: "Shares on a Mac, PC or NAS, as long as the share requires SMB3 encryption and signing.",
   },
 ];
 ---
@@ -28,7 +36,9 @@ const providers = [
       }
     </dl>
 
-    <p class="t-small muted providers__later">WebDAV, S3-compatible storage and SMB are in early testing.</p>
+    <p class="t-small muted providers__later">
+      Have a Hetzner Storage Box? Paste an API token and Syncophant sets up a sub-account that only reaches one folder.
+    </p>
   </div>
 </section>
 
