@@ -1,0 +1,39 @@
+---
+/**
+ * The Syncophant mark: an elephant head whose ear gaps are one clockwise
+ * sync loop. Geometry is copied verbatim from the design system.
+ *
+ * Use the regular cut at 48px tall and above, the small cut below that.
+ * The mark takes `currentColor`, so it is ink on light grounds and white
+ * in the dark theme. It is never blue on the website.
+ */
+import { mark } from "../data/brand";
+
+interface Props {
+  /** Rendered height in px. Picks the cut automatically unless `cut` is set. */
+  height?: number;
+  cut?: "regular" | "small";
+  /** Accessible name. Pass an empty string when the mark is decorative. */
+  label?: string;
+  class?: string;
+}
+
+const { height = 24, cut, label = "Syncophant", class: className } = Astro.props;
+const geometry = mark[cut ?? (height >= 48 ? "regular" : "small")];
+const [, , w, h] = geometry.viewBox.split(" ").map(Number);
+const width = Math.round((height * w) / h * 10) / 10;
+---
+
+<svg
+  class={className}
+  viewBox={geometry.viewBox}
+  width={width}
+  height={height}
+  fill="currentColor"
+  role={label ? "img" : undefined}
+  aria-label={label || undefined}
+  aria-hidden={label ? undefined : "true"}
+  focusable="false"
+>
+  <path d={geometry.d}></path>
+</svg>

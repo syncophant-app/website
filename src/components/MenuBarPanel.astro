@@ -1,0 +1,168 @@
+---
+/**
+ * The menu bar panel, after DESIGN.md: header with the storage and when it
+ * was checked, one hero state, quick tiles, and search. Liquid Glass, since
+ * it floats; inside the glass everything is grouped with flat fills.
+ */
+import Icon from "./Icon.astro";
+import Mark from "./Mark.astro";
+---
+
+<div class="panel glass" aria-hidden="true">
+  <div class="panel__head">
+    <span class="panel__avatar"><Mark height={12} label="" /></span>
+    <span class="panel__who">
+      <strong>Storage Box</strong>
+      <span>Checked 9:41 AM</span>
+    </span>
+  </div>
+
+  <div class="panel__hero">
+    <span class="panel__state">
+      <Icon name="uploading" size={18} />
+      Uploading 1 file
+    </span>
+    <span class="panel__file">
+      <span>Kitchen renovation.mov</span>
+      <span class="panel__pct">42%</span>
+    </span>
+    <span class="panel__bar"><span style="width:42%"></span></span>
+    <span class="panel__next">
+      <Icon name="verifying" size={13} />
+      1 file verifying on your box
+    </span>
+  </div>
+
+  <div class="panel__tiles">
+    <span><Icon name="documents" size={17} />Open in Finder</span>
+    <span><Icon name="plus" size={17} />Add files</span>
+    <span><Icon name="pause" size={17} />Pause</span>
+  </div>
+
+  <div class="panel__search">
+    <Icon name="search" size={14} />
+    Search your box
+  </div>
+</div>
+
+<style>
+  .panel {
+    width: 300px;
+    padding: 14px;
+    border-radius: 26px;
+    font-family: var(--font-system);
+    color: var(--ink);
+    text-align: left;
+    display: grid;
+    gap: 10px;
+  }
+
+  .panel__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 4px 4px;
+  }
+  .panel__avatar {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-tile);
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .panel__who {
+    display: grid;
+    font-size: 13px;
+    line-height: 17px;
+  }
+  .panel__who strong {
+    font-weight: 600;
+  }
+  .panel__who span {
+    font-size: 11px;
+    line-height: 14px;
+    color: var(--ink-muted);
+  }
+
+  .panel__hero {
+    display: grid;
+    gap: 6px;
+    padding: 14px;
+    border-radius: var(--radius-card);
+    background: var(--fill-1);
+  }
+  .panel__state {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+  .panel__file {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .panel__pct {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .panel__bar {
+    display: block;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--fill-2);
+    overflow: hidden;
+  }
+  .panel__bar span {
+    display: block;
+    height: 100%;
+    background: var(--ink);
+  }
+  .panel__next {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 2px;
+    font-size: 11px;
+    line-height: 14px;
+    color: var(--ink-muted);
+  }
+
+  .panel__tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .panel__tiles span {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    text-align: center;
+    gap: 6px;
+    padding: 12px 4px 10px;
+    border-radius: 14px;
+    background: var(--fill-1);
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+  }
+
+  .panel__search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: var(--radius-capsule);
+    background: var(--fill-1);
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+</style>

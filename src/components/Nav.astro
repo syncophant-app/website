@@ -1,0 +1,81 @@
+---
+import Lockup from "./Lockup.astro";
+import { links } from "../data/site";
+---
+
+<header class="nav-wrap">
+  <nav class="nav glass" aria-label="Main">
+    <a class="nav__home" href="/" aria-label="Syncophant home">
+      <Lockup height={20} />
+    </a>
+    <ul class="nav__links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#questions">Questions</a></li>
+      <li><a href={links.repo}>Source</a></li>
+    </ul>
+    <a class="button button--primary button--small" href={links.releases}>Download</a>
+  </nav>
+</header>
+
+<style>
+  .nav-wrap {
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding-inline: var(--gutter);
+    pointer-events: none;
+  }
+
+  .nav {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    height: 48px;
+    padding: 0 8px 0 18px;
+    border-radius: var(--radius-capsule);
+  }
+
+  .nav__home {
+    display: flex;
+    color: var(--ink);
+    border-radius: 6px;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 2px;
+  }
+
+  .nav__links a {
+    display: block;
+    padding: 7px 12px;
+    border-radius: var(--radius-capsule);
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition:
+      background-color var(--dur) var(--ease),
+      color var(--dur) var(--ease);
+  }
+
+  .nav__links a:hover {
+    color: var(--ink);
+    background: var(--fill-1);
+  }
+
+  @media (max-width: 640px) {
+    .nav__links {
+      display: none;
+    }
+    .nav {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>

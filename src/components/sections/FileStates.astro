@@ -1,0 +1,83 @@
+---
+import Status from "../Status.astro";
+import type { FileState } from "../../data/site";
+
+const states: { state: FileState; meaning: string }[] = [
+  { state: "remote", meaning: "Stored on your box. It downloads when you open it." },
+  { state: "uploading", meaning: "On its way. Pause it, and it picks up where it stopped." },
+  { state: "verifying", meaning: "Your box is computing the file's SHA-256 to compare with this Mac." },
+  { state: "verified", meaning: "Both checksums matched. Now the upload counts as done." },
+  { state: "unverified", meaning: "The file arrived, but this server can't check it. Syncophant says so instead of guessing." },
+  { state: "conflict", meaning: "Two edits met. Neither one was overwritten." },
+  { state: "kept", meaning: "Stays downloaded, so you can use it offline." },
+  { state: "failed", meaning: "Nothing on your box was replaced, and the reason is always shown." },
+];
+---
+
+<section class="section" aria-labelledby="states-title">
+  <div class="measure">
+    <div class="section-head">
+      <h2 id="states-title" class="t-title">Every file says where it lives.</h2>
+      <p>
+        The same few words in Finder, in the app and in the menu bar. A file is only called verified when your box has
+        checked it.
+      </p>
+    </div>
+  </div>
+
+  <div class="states-wrap">
+    <dl class="states canvas">
+      {
+        states.map(({ state, meaning }) => (
+          <div class="states__row">
+            <dt>
+              <Status state={state} size="md" />
+            </dt>
+            <dd class="t-small muted">{meaning}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .states-wrap {
+    width: min(100% - 2 * var(--gutter), 760px);
+    margin-inline: auto;
+  }
+
+  .states {
+    padding: 8px 28px;
+  }
+
+  .states__row {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 1.15fr;
+    gap: var(--space-lg);
+    align-items: baseline;
+    padding: 18px 0;
+  }
+
+  .states__row + .states__row {
+    border-top: 0.5px solid var(--line);
+  }
+
+  .states__row dt {
+    display: flex;
+  }
+
+  @media (max-width: 640px) {
+    .states {
+      padding: 4px 18px;
+    }
+    .states__row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 16px 0;
+    }
+    .states__row dd {
+      padding-left: 28px;
+    }
+  }
+</style>

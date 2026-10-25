@@ -1,0 +1,81 @@
+---
+import Mark from "../Mark.astro";
+import Icon from "../Icon.astro";
+import { links, site } from "../../data/site";
+---
+
+<section class="section cta-section" aria-labelledby="cta-title">
+  <div class="cta wide">
+    <Mark height={48} label="" class="cta__mark" />
+    <h2 id="cta-title" class="t-title">Your server, as a drive in Finder.</h2>
+    <p class="cta__text">Free and open source under the GPL. No account to make and nothing to pay.</p>
+    <div class="cta__actions">
+      <a class="button button--paper" href={links.releases}>
+        <Icon name="download" />
+        Download for Mac
+      </a>
+      <a class="button cta__quiet" href={links.repo}>Read the source</a>
+    </div>
+    <p class="t-small cta__note">
+      Needs {site.requirement}. Syncophant is an early build, so keep another copy of important files.
+    </p>
+  </div>
+</section>
+
+<style>
+  .cta {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-lg);
+    padding: 72px var(--space-xl);
+    border-radius: var(--radius-panel);
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+  }
+
+  .cta :global(.cta__mark) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .cta__text {
+    max-width: 30em;
+    opacity: 0.72;
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .cta__quiet {
+    color: var(--paper);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--paper) 30%, transparent);
+    background: transparent;
+  }
+
+  .cta__quiet:hover {
+    background: color-mix(in srgb, var(--paper) 10%, transparent);
+  }
+
+  .cta :focus-visible {
+    box-shadow:
+      0 0 0 2px var(--ink),
+      0 0 0 4px var(--paper);
+  }
+
+  .cta__note {
+    max-width: 34em;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 640px) {
+    .cta {
+      padding: 48px var(--space-lg);
+      border-radius: 24px;
+    }
+  }
+</style>

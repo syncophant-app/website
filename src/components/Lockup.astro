@@ -1,0 +1,32 @@
+---
+/**
+ * Mark plus outlined Onest 650 wordmark, exactly as drawn in the design
+ * system. Cap line on the top of the head, baseline on the bottom of the
+ * ears, gap 0.4 × cap height. Minimum height 20px.
+ */
+import { lockup } from "../data/brand";
+
+interface Props {
+  height?: number;
+  class?: string;
+}
+
+const { height = 22, class: className } = Astro.props;
+const geometry = lockup[height >= 48 ? "regular" : "small"];
+const [, , w, h] = geometry.viewBox.split(" ").map(Number);
+const width = Math.round((height * w) / h * 10) / 10;
+---
+
+<svg
+  class={className}
+  viewBox={geometry.viewBox}
+  width={width}
+  height={height}
+  fill="currentColor"
+  role="img"
+  aria-label="Syncophant"
+  focusable="false"
+>
+  <path d={geometry.mark}></path>
+  <g transform={geometry.wordmarkTransform}><path d={geometry.wordmark}></path></g>
+</svg>

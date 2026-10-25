@@ -1,0 +1,123 @@
+/*
+ * Syncophant website tokens.
+ *
+ * Taken from the Syncophant design system (tokens.json), monochrome subset:
+ * ink, paper, mist, ink-muted and line, plus the Liquid Glass material.
+ * The website deliberately leaves out Syncophant Blue, the coloured light
+ * field (sky, lavender, ember) and the status hues. Status is carried by
+ * glyphs and words, which the design system requires anyway.
+ */
+
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/Onest-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Colour: light */
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --mist: #eef1f6;
+  --ink-muted: #5a6372;
+  --line: #d5dbe4;
+
+  /* Flat fills inside glass and for hover (DESIGN.md: primary at 7, 12, 18%) */
+  --fill-1: rgb(10 10 10 / 0.07);
+  --fill-2: rgb(10 10 10 / 0.12);
+  --fill-3: rgb(10 10 10 / 0.18);
+
+  /* Monochrome light field: soft paper-white glows over mist */
+  --glow-1: rgb(255 255 255 / 0.95);
+  --glow-2: rgb(255 255 255 / 0.7);
+  --shade: rgb(10 26 51 / 0.06);
+
+  /* Liquid Glass (web) */
+  --glass-fill: #ffffff8f;
+  --glass-edge: #ffffffb3;
+  --glass-blur: 24px;
+  --glass-saturation: 180%;
+
+  /* Shadow */
+  --shadow-glass: inset 0 1px 0 #ffffffe6, inset 0 0 0 1px #ffffff73, 0 1px 2px #0a1a330d, 0 10px 30px #0a1a3314;
+  --shadow-canvas: 0 0 0 0.5px #0000001f, 0 5px 14px #0000001a;
+  --shadow-window: 0 0 0 0.5px #0000002e, 0 24px 60px -12px #0a1a3340, 0 8px 20px -8px #0a1a3326;
+  --focus-ring: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
+
+  /* Type: Onest for the brand, system monospace for hosts, paths and keys */
+  --font-sans: Onest, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Space */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 20px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 80px;
+
+  /* Radius */
+  --radius-tile: 8px;
+  --radius-row: 9px;
+  --radius-card: 18px;
+  --radius-canvas: 22px;
+  --radius-panel: 32px;
+  --radius-capsule: 999px;
+
+  /* Motion: 120–200 ms ease-out on press and hover, nothing that plays on its own */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 160ms;
+
+  /* Layout */
+  --measure: 600px;
+  --wide: 1080px;
+  --gutter: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ink: #f3f5f8;
+    --paper: #171a20;
+    --mist: #0c0e13;
+    --ink-muted: #a1a9b6;
+    --line: #2c323c;
+    --fill-1: rgb(243 245 248 / 0.07);
+    --fill-2: rgb(243 245 248 / 0.12);
+    --fill-3: rgb(243 245 248 / 0.18);
+    --glow-1: rgb(52 58 70 / 0.75);
+    --glow-2: rgb(38 43 52 / 0.7);
+    --shade: rgb(0 0 0 / 0.35);
+    --glass-fill: #1c20288f;
+    --glass-edge: #ffffff24;
+    --shadow-glass: inset 0 1px 0 #ffffff2e, inset 0 0 0 1px #ffffff1a, 0 10px 30px #00000066;
+    --shadow-canvas: 0 0 0 0.5px #ffffff1a, 0 5px 14px #00000066;
+    --shadow-window: 0 0 0 0.5px #ffffff24, 0 24px 60px -12px #000000b3, 0 8px 20px -8px #00000080;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f3f5f8;
+  --paper: #171a20;
+  --mist: #0c0e13;
+  --ink-muted: #a1a9b6;
+  --line: #2c323c;
+  --fill-1: rgb(243 245 248 / 0.07);
+  --fill-2: rgb(243 245 248 / 0.12);
+  --fill-3: rgb(243 245 248 / 0.18);
+  --glow-1: rgb(52 58 70 / 0.75);
+  --glow-2: rgb(38 43 52 / 0.7);
+  --shade: rgb(0 0 0 / 0.35);
+  --glass-fill: #1c20288f;
+  --glass-edge: #ffffff24;
+  --shadow-glass: inset 0 1px 0 #ffffff2e, inset 0 0 0 1px #ffffff1a, 0 10px 30px #00000066;
+  --shadow-canvas: 0 0 0 0.5px #ffffff1a, 0 5px 14px #00000066;
+  --shadow-window: 0 0 0 0.5px #ffffff24, 0 24px 60px -12px #000000b3, 0 8px 20px -8px #00000080;
+}

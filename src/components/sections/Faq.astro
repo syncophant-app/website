@@ -1,0 +1,112 @@
+---
+const questions = [
+  {
+    q: "What does my server need?",
+    a: "SSH access with SFTP, and permission to run sha256sum. Hetzner Storage Boxes have both on port 23. Without a checksum, Syncophant won't call an upload verified.",
+  },
+  {
+    q: "Do my files take up space on my Mac?",
+    a: "Only the ones you open or keep. Everything else stays on your box and shows in Finder without using disk space. The cache is 5 GB per storage by default, and it never drops a file that hasn't finished uploading.",
+  },
+  {
+    q: "Does it work when the app is closed?",
+    a: "Yes. Your storage stays in Finder after you quit the menu bar app.",
+  },
+  {
+    q: "Where are my passwords and keys kept?",
+    a: "In your Keychain. They never go into settings files, logs or diagnostics.",
+  },
+  {
+    q: "Can anyone else see my files?",
+    a: "Syncophant connects your Mac straight to your storage. There's no Syncophant server in between and no account to sign in to.",
+  },
+  {
+    q: "Is it really free?",
+    a: "Yes. The app is GPL-3.0-or-later and its storage libraries are MIT. There are no paid plans.",
+  },
+  {
+    q: "Can I trust it with my only copy of something?",
+    a: "Not yet. Syncophant is an early build. Keep another copy of anything you can't lose.",
+  },
+  {
+    q: "Which Macs does it run on?",
+    a: "Macs with macOS 26 or later.",
+  },
+];
+---
+
+<section id="questions" class="section" aria-labelledby="faq-title">
+  <div class="measure">
+    <div class="section-head">
+      <h2 id="faq-title" class="t-title">Questions</h2>
+    </div>
+
+    <div class="faq canvas">
+      {
+        questions.map(({ q, a }) => (
+          <details class="faq__item">
+            <summary>
+              <span>{q}</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M12 5.75v12.5M5.75 12h12.5" />
+              </svg>
+            </summary>
+            <p class="muted">{a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: 4px 24px;
+  }
+
+  .faq__item + .faq__item {
+    border-top: 0.5px solid var(--line);
+  }
+
+  .faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: 18px 0;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 550;
+    cursor: pointer;
+    list-style: none;
+    border-radius: 6px;
+  }
+
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq summary svg {
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .faq details[open] summary svg {
+    transform: rotate(45deg);
+  }
+
+  .faq__item p {
+    max-width: 36em;
+    padding: 0 0 20px;
+  }
+
+  @media (max-width: 520px) {
+    .faq {
+      padding-inline: 18px;
+    }
+  }
+</style>

@@ -1,0 +1,87 @@
+---
+const steps = [
+  {
+    title: "Connect your storage",
+    body: "Paste a Hetzner API token and Syncophant lists your boxes. It can make a sub-account that only reaches one folder. Or enter any SFTP server, with a password, a private key or your SSH agent.",
+    detail: "u123456.your-storagebox.de, port 23",
+  },
+  {
+    title: "Trust the host key",
+    body: "Compare the fingerprint with the one your provider shows, then choose Trust this key. If the key ever changes, Syncophant stops before it signs in.",
+    detail: "SHA256:7Lx0q2VbT9cJm4…Rk8w",
+  },
+  {
+    title: "Open Finder",
+    body: "Your storage is under Locations. Drag files in, or drop them on the menu bar icon.",
+  },
+];
+---
+
+<section id="how-it-works" class="section" aria-labelledby="how-title">
+  <div class="measure">
+    <div class="section-head">
+      <h2 id="how-title" class="t-title">Set it up once.</h2>
+      <p>Three steps. Your password or key is saved in your Keychain and nowhere else.</p>
+    </div>
+
+    <ol class="steps">
+      {
+        steps.map((s, i) => (
+          <li class="step">
+            <span class="step__n" aria-hidden="true">
+              {i + 1}
+            </span>
+            <div class="step__text">
+              <h3 class="t-subheading">{s.title}</h3>
+              <p class="muted">{s.body}</p>
+              {s.detail && <code class="t-mono step__detail">{s.detail}</code>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    display: grid;
+    gap: var(--space-xl);
+    counter-reset: step;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--space-lg);
+  }
+
+  .step__n {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--fill-3);
+    font-size: 14px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .step__text {
+    display: grid;
+    gap: 6px;
+    padding-top: 3px;
+  }
+
+  .step__detail {
+    justify-self: start;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: var(--radius-tile);
+    background: var(--paper);
+    box-shadow: var(--shadow-canvas);
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+</style>

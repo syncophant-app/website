@@ -1,0 +1,129 @@
+---
+import Icon from "../Icon.astro";
+
+const destinations = [
+  { who: "Your storage", when: "Whenever you browse, open or upload. That's where your files are." },
+  { who: "Hetzner's API", when: "Only if you add an API token, to list your boxes and set up access." },
+  { who: "GitHub", when: "Only when you check for updates. Automatic checks are off until you turn them on." },
+  { who: "Anyone else", when: "Never. No analytics, no crash reports, no account service." },
+];
+
+const facts = [
+  "Passwords and keys stay in your Keychain, never in settings or logs.",
+  "Settings › Privacy keeps a local record of every connection the app and its Finder extension make.",
+  "Diagnostics are saved on your Mac, with hosts and user names removed.",
+];
+---
+
+<section id="privacy" class="section" aria-labelledby="privacy-title">
+  <div class="measure">
+    <div class="section-head">
+      <h2 id="privacy-title" class="t-title">Free. No account. No telemetry.</h2>
+      <p>Syncophant has no server of its own. The app talks to your storage, and to two others only when you ask it to.</p>
+    </div>
+
+    <div class="ledger canvas">
+      <table>
+        <caption class="t-caption muted">Where the app connects</caption>
+        <tbody>
+          {
+            destinations.map((d) => (
+              <tr>
+                <th scope="row">{d.who}</th>
+                <td class="muted">{d.when}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="facts">
+      {
+        facts.map((f) => (
+          <li>
+            <Icon name="check" size={16} />
+            <span>{f}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ledger {
+    padding: 6px 24px 10px;
+  }
+
+  .ledger table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .ledger caption {
+    padding: 14px 0 6px;
+    text-align: left;
+  }
+
+  .ledger th,
+  .ledger td {
+    padding: 14px 0;
+    vertical-align: baseline;
+    text-align: left;
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .ledger th {
+    width: 9.5em;
+    padding-right: var(--space-lg);
+    font-weight: 600;
+  }
+
+  .ledger tr + tr th,
+  .ledger tr + tr td {
+    border-top: 0.5px solid var(--line);
+  }
+
+  .ledger tr:last-child th {
+    font-weight: 650;
+  }
+
+  .facts {
+    display: grid;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  .facts li {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: var(--space-md);
+    align-items: start;
+  }
+
+  .facts li :global(svg) {
+    margin-top: 5px;
+  }
+
+  @media (max-width: 520px) {
+    .ledger {
+      padding-inline: 18px;
+    }
+    .ledger tr {
+      display: grid;
+      gap: 2px;
+      padding: 12px 0;
+    }
+    .ledger tr + tr {
+      border-top: 0.5px solid var(--line);
+    }
+    .ledger th,
+    .ledger td {
+      padding: 0;
+      border: 0 !important;
+      width: auto;
+    }
+  }
+</style>

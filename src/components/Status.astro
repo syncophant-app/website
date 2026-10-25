@@ -1,0 +1,51 @@
+---
+/** A file state: glyph first, words second. Never a colour on its own. */
+import Icon from "./Icon.astro";
+import { fileStates, type FileState } from "../data/site";
+
+interface Props {
+  state: FileState;
+  /** Override the words, e.g. a different upload percentage. */
+  words?: string;
+  size?: "sm" | "md";
+  class?: string;
+}
+
+const { state, words, size = "sm", class: className } = Astro.props;
+const s = fileStates[state];
+---
+
+<span class:list={["status", `status--${size}`, `status--${state}`, className]}>
+  <Icon name={s.glyph} size={size === "sm" ? 14 : 18} />
+  <span>{words ?? s.words}</span>
+</span>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .status--sm {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+  }
+  .status--md {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 550;
+    color: var(--ink);
+    gap: 10px;
+  }
+  /* Verified and kept are the states people look for: full ink. */
+  .status--sm.status--verified,
+  .status--sm.status--kept {
+    color: var(--ink);
+  }
+  .status svg {
+    flex: none;
+  }
+</style>

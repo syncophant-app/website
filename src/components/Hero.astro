@@ -1,0 +1,179 @@
+---
+import Mark from "./Mark.astro";
+import Icon from "./Icon.astro";
+import FinderWindow from "./FinderWindow.astro";
+import MenuBarPanel from "./MenuBarPanel.astro";
+import { links, site } from "../data/site";
+---
+
+<section class="hero">
+  <div class="hero__intro measure">
+    <Mark height={52} label="" class="hero__mark" />
+    <h1 class="t-display">{site.tagline}</h1>
+    <p class="t-subheading hero__lead">
+      Syncophant puts your Hetzner Storage Box or SFTP server in Finder, right next to Macintosh HD.
+    </p>
+    <div class="hero__actions">
+      <a class="button button--primary" href={links.releases}>
+        <Icon name="download" />
+        Download for Mac
+      </a>
+      <a class="button button--quiet" href={links.repo}>Read the source</a>
+    </div>
+    <p class="t-small muted">Free and open source. Needs {site.requirement}.</p>
+  </div>
+
+  <div class="stage wide">
+    <div class="stage__menubar" aria-hidden="true">
+      <span class="stage__menus">
+        <strong>Finder</strong>
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Go</span>
+        <span class="stage__hide-sm">Window</span>
+      </span>
+      <span class="stage__status">
+        <span class="stage__item is-open"><Mark height={13} label="" /></span>
+        <span class="stage__hide-sm">Sun Oct 25</span>
+        <span>9:41 AM</span>
+      </span>
+    </div>
+
+    <div class="stage__desk">
+      <FinderWindow />
+      <div class="stage__panel">
+        <MenuBarPanel />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: 72px;
+    padding-bottom: var(--space-3xl);
+  }
+
+  .hero__intro {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-lg);
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .hero__intro :global(.hero__mark) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero__lead {
+    max-width: 30em;
+    color: var(--ink-muted);
+    font-weight: 450;
+    text-wrap: balance;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  /* The desktop: a monochrome wallpaper made from the light field. */
+  .stage {
+    position: relative;
+    border-radius: var(--radius-panel);
+    padding: 0 32px 40px;
+    background:
+      radial-gradient(55% 70% at 8% 0%, var(--glow-1), transparent 70%),
+      radial-gradient(45% 60% at 100% 10%, var(--glow-2), transparent 70%),
+      radial-gradient(80% 70% at 60% 110%, var(--shade), transparent 70%),
+      linear-gradient(180deg, color-mix(in srgb, var(--mist) 70%, var(--line)), var(--mist));
+    box-shadow: inset 0 0 0 0.5px var(--fill-2);
+    overflow: hidden;
+  }
+
+  .stage__menubar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    margin: 0 -16px 20px;
+    font-family: var(--font-system);
+    font-size: 13px;
+    line-height: 17px;
+    color: var(--ink);
+  }
+  .stage__menus,
+  .stage__status {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .stage__menus strong {
+    font-weight: 700;
+  }
+  .stage__item {
+    display: grid;
+    place-items: center;
+    height: 24px;
+    padding: 0 9px;
+    border-radius: var(--radius-capsule);
+  }
+  .stage__item.is-open {
+    background: var(--fill-2);
+  }
+
+  .stage__desk {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 288px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .stage__desk :global(.panel) {
+    width: 288px;
+  }
+
+  .stage__panel {
+    position: relative;
+    margin-top: -12px;
+  }
+
+  @media (max-width: 1180px) {
+    .stage__desk {
+      grid-template-columns: 1fr;
+    }
+    .stage__panel {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 48px;
+    }
+    .hero__intro {
+      margin-bottom: 40px;
+    }
+    .stage {
+      padding: 0 10px 14px;
+      border-radius: 24px;
+    }
+    .stage__menubar {
+      margin: 0 0 8px;
+      padding: 0 6px;
+      font-size: 12px;
+    }
+    .stage__menus,
+    .stage__status {
+      gap: 12px;
+    }
+    .stage__hide-sm {
+      display: none;
+    }
+  }
+</style>

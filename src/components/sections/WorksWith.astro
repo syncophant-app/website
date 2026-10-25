@@ -1,0 +1,51 @@
+---
+const providers = [
+  {
+    name: "Hetzner Storage Box",
+    body: "Paste an API token. Syncophant finds your boxes, connects over SFTP on port 23 and can limit itself to one folder with a sub-account.",
+  },
+  {
+    name: "Any SFTP server",
+    body: "Sign in with a password, a private key or your SSH agent. The server needs to run sha256sum, so uploads can be verified.",
+  },
+];
+---
+
+<section class="section" aria-labelledby="works-title">
+  <div class="measure">
+    <div class="section-head">
+      <h2 id="works-title" class="t-title">Bring the storage you already have.</h2>
+    </div>
+
+    <dl class="providers">
+      {
+        providers.map((p) => (
+          <div class="provider">
+            <dt class="t-heading">{p.name}</dt>
+            <dd class="muted">{p.body}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <p class="t-small muted providers__later">WebDAV, S3-compatible storage and SMB are in early testing.</p>
+  </div>
+</section>
+
+<style>
+  .providers {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .provider {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .providers__later {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 0.5px solid var(--line);
+  }
+</style>
