@@ -1,13 +1,13 @@
 # Syncophant
 
-> Syncophant is a free, open-source macOS app that puts remote storage in Finder, as a location next to Macintosh HD. It connects to SFTP servers, WebDAV, S3-compatible object storage, SMB shares, Dropbox, Box and Google Drive (experimental). No account, no telemetry. Needs macOS 26 or later.
+> Syncophant is a free, open-source macOS app that puts remote storage in Finder, as a location next to Macintosh HD. It connects to SFTP servers, WebDAV, S3-compatible object storage, SMB shares, Dropbox, OneDrive, Box and Google Drive (experimental). No account, no telemetry. Needs macOS 26 or later.
 
 - Files download when opened and take no space until then. Folders can be kept on the Mac for offline use.
 - An upload counts as verified only when the copy on your storage has the same SHA-256 checksum as the Mac. Uploads whose checksum can't be confirmed show "Uploaded · not verified".
 - Conflicting edits produce a conflict copy; nothing is overwritten.
 - Passwords and keys are stored in the macOS Keychain. The app connects only to your storage, to Hetzner's API if you add a Hetzner token, and to GitHub when you check for updates.
 - Connection types: SFTP (password, private key or SSH agent; the server must run sha256sum), WebDAV over HTTPS, S3-compatible object storage over HTTPS (no one-step rename, so it copies and the trash is off), and SMB shares that require SMB3 encryption and signing.
-- Cloud drives: Dropbox, Box and Google Drive sign in through the browser with an OAuth app you create in the service's developer console; Syncophant ships no client IDs. Deletes go to the service's trash. Google Drive is experimental: it has no write preconditions, so a change made elsewhere at the same moment can be lost or duplicated, and Google Docs are skipped.
+- Cloud drives: Dropbox, OneDrive, Box and Google Drive sign in through the browser with an OAuth app you create in the service's developer console; Syncophant ships no client IDs. Deletes go to the service's trash. Google Drive is experimental: it has no write preconditions, so a change made elsewhere at the same moment can be lost or duplicated, and Google Docs are skipped.
 - Install: download the DMG, or `brew install --cask syncophant-app/tap/syncophant` (Apple silicon).
 - Hetzner Storage Boxes get a guided setup: paste an API token and Syncophant creates a sub-account limited to one folder.
 - License: app GPL-3.0-or-later, storage libraries MIT. Syncophant is an early build; keep another copy of important files.

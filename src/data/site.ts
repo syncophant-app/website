@@ -19,7 +19,7 @@ export const site = {
   url: "https://syncophant.app",
   tagline: "Remote storage that feels local.",
   description:
-    "Syncophant puts your SFTP server, WebDAV, S3-compatible storage, SMB share, Dropbox, Box or Google Drive in Finder. Free and open source, with no account and no telemetry.",
+    "Syncophant puts your SFTP server, WebDAV, S3-compatible storage, SMB share, Dropbox, OneDrive, Box or Google Drive in Finder. Free and open source, with no account and no telemetry.",
   requirement: "macOS 26 or later",
   /** 1200×630 social card in public/. */
   ogImage: "/og.png",
@@ -48,11 +48,11 @@ export type FileState = keyof typeof fileStates;
 export const questions = [
   {
     q: "Which storage does it work with?",
-    a: "SFTP servers, WebDAV, S3-compatible object storage, SMB shares, Dropbox, Box and Google Drive. That covers most NAS devices, VPSs and hosted storage. Google Drive support is experimental. Hetzner Storage Boxes also get a guided setup.",
+    a: "SFTP servers, WebDAV, S3-compatible object storage, SMB shares, Dropbox, OneDrive, Box and Google Drive. That covers most NAS devices, VPSs and hosted storage. Google Drive support is experimental. Hetzner Storage Boxes also get a guided setup.",
   },
   {
     q: "What does my server need?",
-    a: "SFTP needs SSH access and permission to run sha256sum. WebDAV and S3-compatible storage need HTTPS. SMB shares must require SMB3 encryption and signing. Dropbox, Box and Google Drive need an app you create in that service's developer console; Syncophant shows the steps. Without a checksum, Syncophant won't call an upload verified.",
+    a: "SFTP needs SSH access and permission to run sha256sum. WebDAV and S3-compatible storage need HTTPS. SMB shares must require SMB3 encryption and signing. Dropbox, OneDrive, Box and Google Drive need an app you create in that service's developer console; Syncophant shows the steps. Without a checksum, Syncophant won't call an upload verified.",
   },
   {
     q: "Why is Google Drive experimental?",
