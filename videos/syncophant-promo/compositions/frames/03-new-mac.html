@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Onest Variable"; src: url("assets/Onest-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        #f03-root { position: absolute; inset: 0; color: #ffffff; font-family: "Onest Variable", sans-serif; overflow: hidden; }
+        #f03-root .bg { position: absolute; inset: 0; background: #0a0a0a; }
+        #f03-root .dollars { position: absolute; left: 0; top: 0; width: 1080px; height: 1600px; font-size: 150px; font-weight: 900; color: #141516; line-height: 1; word-spacing: 0.2em; padding: 30px; }
+        #f03-root .q { position: absolute; left: 72px; top: 80px; font-size: 96px; font-weight: 800; letter-spacing: -0.035em; transform-origin: 0% 60%; }
+        #f03-root .chart { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; }
+        #f03-root .chartlabel { position: absolute; left: 80px; top: 530px; font-size: 26px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #4DA3FF; }
+        #f03-root .big { position: absolute; left: 0; right: 0; top: 650px; text-align: center; font-size: 132px; font-weight: 900; letter-spacing: -0.05em; line-height: 0.9; transform-origin: 50% 50%; }
+        #f03-root .sub { position: absolute; left: 0; right: 0; top: 800px; text-align: center; font-size: 36px; font-weight: 400; color: #a1a9b6; }
+      </style>
+      <div data-hf-id="hf-g78m" id="f03-root" data-composition-id="f03-new-mac" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-sx4y" id="f03-bg" class="bg clip" data-start="0" data-duration="3.2" data-track-index="0"></div>
+        <div data-hf-id="hf-2a0g" class="dollars" aria-hidden="true" data-layout-allow-overlap>$ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $</div>
+        <div data-hf-id="hf-62jm" class="q">buy a new mac?</div>
+        <svg data-hf-id="hf-7hrc" class="chart" viewBox="0 0 1080 1080">
+          <line data-hf-id="hf-jbjr" x1="72" y1="610" x2="1008" y2="610" stroke="#262728" stroke-width="2" />
+          <polyline data-hf-id="hf-592h" class="ram" points="72,600 220,585 330,590 430,560 520,540 600,470 680,380 760,300 840,180 920,40 960,-40" fill="none" stroke="#4DA3FF" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" />
+        </svg>
+        <div data-hf-id="hf-i4yh" class="chartlabel">ram prices ↗</div>
+        <div data-hf-id="hf-sjcg" class="big">RAMPOCALYPSE</div>
+        <div data-hf-id="hf-5omh" class="sub">a new mac now costs a kidney. maybe two.</div>
+        <audio id="f03-sfx-zip" data-hf-media-start-basis="local" src="assets/sfx/zip-up.wav" data-start="0.7" data-duration="0.32" data-volume="0.4"></audio>
+        <audio id="f03-sfx-impact" data-hf-media-start-basis="local" src="assets/sfx/impact.wav" data-start="1.6" data-duration="0.9" data-volume="0.55"></audio>
+        <audio id="f03-sfx-rumble" data-hf-media-start-basis="local" src="assets/sfx/rumble.wav" data-start="2.4" data-duration="0.5" data-volume="0.6"></audio>
+        <audio id="f03-sfx-cash" data-hf-media-start-basis="local" src="assets/sfx/cash.wav" data-start="2.45" data-duration="0.8" data-volume="0.5"></audio>
+      </div>
+      <script>
+        (function () {
+          const B = 0.4;
+          const q = (s) => "#f03-root " + s;
+          const ram = document.querySelector("#f03-root .ram");
+          const len = ram.getTotalLength();
+          ram.style.strokeDasharray = len + " " + len;
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".q"), { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "expo.out" }, 0.02);
+          // The price line crawls, then rockets out of the frame.
+          tl.fromTo(ram, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 1.15, ease: "power4.in" }, B * 0.6);
+          tl.fromTo(q(".chartlabel"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.2 }, B);
+          tl.fromTo(q(".dollars"), { opacity: 0, y: 0 }, { opacity: 1, y: -420, duration: 2.4, ease: "none" }, B * 2);
+          // RAMPOCALYPSE grows across the square while its weight cranks 100 → 900.
+          tl.fromTo(q(".big"), { opacity: 0, scaleX: 0.35, scaleY: 0.8, fontWeight: 100 }, { opacity: 1, scaleX: 1, scaleY: 1, fontWeight: 900, duration: 0.8, ease: "power3.out" }, 4 * B);
+          // Fixed shake offsets (no randomness, so every render matches).
+          tl.to(q(".big"), {
+            keyframes: [{ x: -9, y: 4 }, { x: 8, y: -5 }, { x: -6, y: -3 }, { x: 10, y: 5 }, { x: -4, y: 2 }, { x: 0, y: 0 }],
+            duration: 0.36, ease: "none",
+          }, 6 * B);
+          tl.fromTo(q(".sub"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 6 * B);
+          window.__timelines["f03-new-mac"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

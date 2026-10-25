@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Onest Variable"; src: url("assets/Onest-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        #v1-root { position: absolute; inset: 0; color: #0a0a0a; font-family: "Onest Variable", sans-serif; overflow: hidden; }
+        #v1-root .bg { position: absolute; inset: 0; background: radial-gradient(60% 50% at 18% 12%, rgba(255,255,255,0.95), rgba(255,255,255,0) 70%), radial-gradient(55% 55% at 88% 86%, rgba(255,255,255,0.75), rgba(255,255,255,0) 70%), #eef1f6; }
+        #v1-root .wrap { position: absolute; left: 120px; right: 120px; top: 330px; }
+        #v1-root .h { font-size: 68px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.08; }
+        #v1-root .disk { margin-top: 96px; }
+        #v1-root .meta { display: flex; justify-content: space-between; align-items: baseline; font-size: 28px; color: #5a6372; }
+        #v1-root .meta b { color: #0a0a0a; font-weight: 600; }
+        #v1-root .track { position: relative; margin-top: 18px; height: 22px; border-radius: 999px; background: #d5dbe4; overflow: hidden; }
+        #v1-root .fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 999px; background: #0a0a0a; transform-origin: 0% 50%; }
+      </style>
+      <div id="v1-root" data-composition-id="v3-space" data-width="1080" data-height="1080">
+        <div id="v1-bg" class="bg clip" data-start="0" data-duration="4.795" data-track-index="0"></div>
+        <div class="wrap">
+          <div class="h">Running out of space on your Mac?</div>
+          <div class="disk">
+            <div class="meta"><b>Macintosh HD</b><span class="used">0 GB of 500 GB used</span></div>
+            <div class="track"><div class="fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const q = (s) => "#v1-root " + s;
+          const used = document.querySelector("#v1-root .used");
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".h"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.3);
+          tl.fromTo(q(".disk"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 1.2);
+          const gb = { v: 0 };
+          tl.fromTo(gb, { v: 0 }, { v: 482, duration: 2.2, ease: "power2.inOut", onUpdate: () => { used.textContent = Math.round(gb.v) + " GB of 500 GB used"; } }, 1.5);
+          tl.fromTo(q(".fill"), { scaleX: 0 }, { scaleX: 0.964, duration: 2.2, ease: "power2.inOut" }, 1.5);
+          tl.to(q(".wrap"), { opacity: 0, y: -16, duration: 0.5, ease: "power2.in" }, 4.795 - 0.5);
+          window.__timelines["v3-space"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

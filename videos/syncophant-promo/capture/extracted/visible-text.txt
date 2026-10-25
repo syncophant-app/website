@@ -1,0 +1,26 @@
+## Intent
+
+A small, fast social promo for Syncophant (syncophant.app). Hook in the user's words: "Here's a hack for your Mac that you want to keep track". Pitch: running out of storage on your Mac? A new Mac is expensive, especially with the RAMpocalypse (RAM prices keep climbing). Cloud storage charges a hefty sum for a TB, and it's yet another subscription. Syncophant lets you bring your own storage: connect it and it looks like you just got a new hard drive. "The Dropbox of 2026", but your data is yours and no one else sees it.
+
+Kicker: don't have storage? Hetzner Storage Boxes cost 3.81 EUR (4.27 USD, 403.66 INR) per month for 1 TB, and Syncophant sets up the Hetzner connection in one step.
+
+Close: free, open source, no paywalls, no tracking, no account needed to start syncing. syncophant.app
+
+Tone: comedic, relatable, high-octane. Typography heavy. The user's script is a rough idea; restructure freely. Design visual elements from scratch so they match the brand.
+
+## Assets
+
+- src/data/brand.ts (website repo) — the mark and lockup SVG paths. Copy verbatim, never redraw. The mark is an elephant head whose ear gaps form one clockwise sync loop (up arrow left, down arrow right). Animate the logo.
+- public/fonts/Onest-Variable.woff2 (website repo) — "Onest Variable", the only typeface. Variable weight 100–900.
+
+## Customizations
+
+- Music: generated, high-octane, cuts on its beat. Generate with the host's creative tools.
+- Super fast motion graphics, kinetic typography.
+- Logo animation: the sync-loop arrows in the ear gaps are the hero motion.
+
+## Notes
+
+- Brand colours: ink #0a0a0a, paper #ffffff, mist #eef1f6, ink-muted #5a6372, line #d5dbe4. Syncophant Blue #4DA3FF to #0A5FDB (app icon gradient).
+- Claims must stay true: works with SFTP, WebDAV, S3-compatible and SMB; Hetzner gets a guided setup; free, GPL; no account, no telemetry; macOS 26 or later.
+- No narration. No captions needed; the typography carries the copy.

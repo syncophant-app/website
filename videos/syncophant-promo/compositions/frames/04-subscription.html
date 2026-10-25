@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Onest Variable"; src: url("assets/Onest-Variable.woff2") format("woff2"); font-weight: 100 900; }
+        #f04-root { position: absolute; inset: 0; color: #ffffff; font-family: "Onest Variable", sans-serif; overflow: hidden; }
+        #f04-root .bg { position: absolute; inset: 0; background: #0a0a0a; }
+        #f04-root .q { position: absolute; left: 72px; top: 80px; font-size: 96px; font-weight: 800; letter-spacing: -0.035em; transform-origin: 0% 60%; }
+        #f04-root .count { position: absolute; left: 72px; top: 200px; padding: 12px 22px; border-radius: 999px; border: 2px solid #4DA3FF; color: #4DA3FF; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+        #f04-root .card { position: absolute; left: 150px; width: 780px; height: 128px; padding: 0 40px; border-radius: 28px; background: #18191A; border: 1px solid #262728; display: flex; align-items: center; justify-content: space-between; font-size: 42px; font-weight: 700; letter-spacing: -0.02em; }
+        #f04-root .card span { font-size: 34px; font-weight: 500; color: #a1a9b6; }
+        #f04-root .c1 { top: 300px; }
+        #f04-root .c2 { top: 425px; }
+        #f04-root .c3 { top: 550px; }
+        #f04-root .c4 { top: 675px; background: #ffffff; color: #0a0a0a; }
+        #f04-root .c4 span { color: #5a6372; }
+        #f04-root .forever { position: absolute; left: 0; right: 0; top: 845px; text-align: center; font-size: 170px; font-weight: 900; letter-spacing: -0.05em; line-height: 0.9; color: #4DA3FF; transform-origin: 50% 60%; }
+      </style>
+      <div data-hf-id="hf-ertv" id="f04-root" data-composition-id="f04-subscription" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-9sqm" id="f04-bg" class="bg clip" data-start="0" data-duration="3.2" data-track-index="0"></div>
+        <div data-hf-id="hf-j5jo" class="q">cloud storage?</div>
+        <div data-hf-id="hf-7nyd" class="count">subscription #<span data-hf-id="hf-yee0" class="n">10</span></div>
+        <div data-hf-id="hf-ce3q" class="card c1">streaming <span data-hf-id="hf-n1by">/mo</span></div>
+        <div data-hf-id="hf-w4go" class="card c2">music <span data-hf-id="hf-z5uq">/mo</span></div>
+        <div data-hf-id="hf-5efi" class="card c3">the gym you never go to <span data-hf-id="hf-zk5r">/mo</span></div>
+        <div data-hf-id="hf-n1f0" class="card c4">1 TB of cloud <span data-hf-id="hf-zygs">/mo</span></div>
+        <div data-hf-id="hf-w9s2" class="forever">forever.</div>
+        <audio id="f04-sfx-swish-1" data-hf-media-start-basis="local" src="assets/sfx/swish.wav" data-start="0.4" data-duration="0.22" data-volume="0.45"></audio>
+        <audio id="f04-sfx-swish-2" data-hf-media-start-basis="local" src="assets/sfx/swish.wav" data-start="0.8" data-duration="0.22" data-volume="0.45"></audio>
+        <audio id="f04-sfx-swish-3" data-hf-media-start-basis="local" src="assets/sfx/swish.wav" data-start="1.2" data-duration="0.22" data-volume="0.45"></audio>
+        <audio id="f04-sfx-swish-4" data-hf-media-start-basis="local" src="assets/sfx/swish.wav" data-start="1.6" data-duration="0.22" data-volume="0.45"></audio>
+        <audio id="f04-sfx-impact" data-hf-media-start-basis="local" src="assets/sfx/impact.wav" data-start="2.0" data-duration="0.9" data-volume="0.6"></audio>
+      </div>
+      <script>
+        (function () {
+          const B = 0.4;
+          const q = (s) => "#f04-root " + s;
+          const n = document.querySelector("#f04-root .n");
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(q(".q"), { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "expo.out" }, 0.02);
+          tl.fromTo(q(".count"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(3)" }, B * 0.6);
+          // Cards are dealt in on the beat; the counter ticks with each one.
+          const rest = [-4, 3, -2, 2];
+          [".c1", ".c2", ".c3", ".c4"].forEach((c, i) => {
+            const at = B * (1 + i);
+            tl.fromTo(q(c), { x: 900, rotation: 24, opacity: 0 }, { x: 0, rotation: rest[i], opacity: 1, duration: 0.24, ease: "expo.out" }, at);
+            tl.set(n, { textContent: String(11 + i) }, at + 0.06);
+            tl.fromTo(q(".count"), { scale: 1.25 }, { scale: 1, duration: 0.18, ease: "power2.out" }, at + 0.06);
+          });
+          // forever.
+          tl.fromTo(q(".forever"), { opacity: 0, scale: 2.4, fontWeight: 200 }, { opacity: 1, scale: 1, fontWeight: 900, duration: 0.28, ease: "expo.out" }, 5 * B);
+          tl.to(q(".card"), { y: "+=10", duration: 0.05, yoyo: true, repeat: 1, ease: "none", stagger: 0.02 }, 5 * B + 0.05);
+          // Everything sinks under the weight just before the drop.
+          tl.to(q(".card, .count, .q"), { y: 40, opacity: 0.25, duration: 0.5, ease: "power2.in" }, 7 * B - 0.1);
+          window.__timelines["f04-subscription"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
