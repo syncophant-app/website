@@ -1,7 +1,7 @@
 ---
 import Mark from "../Mark.astro";
 import Icon from "../Icon.astro";
-import { links, site } from "../../data/site";
+import { brewInstall, links, site } from "../../data/site";
 ---
 
 <section class="section cta-section" aria-labelledby="cta-title">
@@ -19,6 +19,7 @@ import { links, site } from "../../data/site";
     <p class="t-small cta__note">
       Needs {site.requirement}. Syncophant is an early build, so keep another copy of important files.
     </p>
+    <p class="t-small cta__note">Homebrew: <code class="t-mono">{brewInstall}</code></p>
   </div>
 </section>
 
@@ -70,6 +71,11 @@ import { links, site } from "../../data/site";
   .cta__note {
     max-width: 34em;
     opacity: 0.72;
+  }
+
+  .cta__note code {
+    overflow-wrap: anywhere;
+    user-select: all;
   }
 
   @media (max-width: 640px) {

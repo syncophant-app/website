@@ -3,7 +3,7 @@ import Mark from "./Mark.astro";
 import Icon from "./Icon.astro";
 import FinderWindow from "./FinderWindow.astro";
 import MenuBarPanel from "./MenuBarPanel.astro";
-import { links, site } from "../data/site";
+import { brewInstall, links, site } from "../data/site";
 ---
 
 <section class="hero">
@@ -11,7 +11,7 @@ import { links, site } from "../data/site";
     <Mark height={52} label="" class="hero__mark" />
     <h1 class="t-display">{site.tagline}</h1>
     <p class="t-subheading hero__lead">
-      Syncophant puts your SFTP server, WebDAV, S3-compatible storage or SMB share in Finder, right next to Macintosh HD.
+      Syncophant puts your SFTP server, WebDAV, S3-compatible storage, SMB share, Dropbox, Box or Google Drive in Finder, right next to Macintosh HD.
     </p>
     <div class="hero__actions">
       <a class="button button--primary" href={links.download}>
@@ -21,6 +21,9 @@ import { links, site } from "../data/site";
       <a class="button button--quiet" href={links.repo}>Read the source</a>
     </div>
     <p class="t-small muted">Free and open source. Needs {site.requirement}.</p>
+    <p class="t-small muted hero__brew">
+      Or with <a href={links.tap}>Homebrew</a>: <code class="t-mono">{brewInstall}</code>
+    </p>
   </div>
 
   <div class="stage wide">
@@ -72,6 +75,20 @@ import { links, site } from "../data/site";
     color: var(--ink-muted);
     font-weight: 450;
     text-wrap: balance;
+  }
+
+  .hero__brew {
+    margin-top: calc(-1 * var(--space-md));
+  }
+
+  .hero__brew code {
+    padding: 2px 8px;
+    border-radius: var(--radius-tile);
+    background: var(--paper);
+    box-shadow: var(--shadow-canvas);
+    color: var(--ink);
+    overflow-wrap: anywhere;
+    user-select: all;
   }
 
   .hero__actions {

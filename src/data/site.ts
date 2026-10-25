@@ -8,14 +8,18 @@ export const links = {
   download: "https://github.com/syncophant-app/macos/releases/latest/download/Syncophant.dmg",
   license: "https://github.com/syncophant-app/macos/blob/main/LICENSE",
   status: "https://github.com/syncophant-app/macos/blob/main/docs/STATUS.md",
+  tap: "https://github.com/syncophant-app/homebrew-tap",
 } as const;
+
+/** Homebrew cask in syncophant-app/homebrew-tap, bumped on each tagged release. */
+export const brewInstall = "brew install --cask syncophant-app/tap/syncophant";
 
 export const site = {
   name: "Syncophant",
   url: "https://syncophant.app",
   tagline: "Remote storage that feels local.",
   description:
-    "Syncophant puts your SFTP server, WebDAV, S3-compatible storage or SMB share in Finder. Free and open source, with no account and no telemetry.",
+    "Syncophant puts your SFTP server, WebDAV, S3-compatible storage, SMB share, Dropbox, Box or Google Drive in Finder. Free and open source, with no account and no telemetry.",
   requirement: "macOS 26 or later",
   /** 1200×630 social card in public/. */
   ogImage: "/og.png",
@@ -44,11 +48,15 @@ export type FileState = keyof typeof fileStates;
 export const questions = [
   {
     q: "Which storage does it work with?",
-    a: "SFTP servers, WebDAV, S3-compatible object storage and SMB shares. That covers most NAS devices, VPSs and hosted storage. Hetzner Storage Boxes also get a guided setup.",
+    a: "SFTP servers, WebDAV, S3-compatible object storage, SMB shares, Dropbox, Box and Google Drive. That covers most NAS devices, VPSs and hosted storage. Google Drive support is experimental. Hetzner Storage Boxes also get a guided setup.",
   },
   {
     q: "What does my server need?",
-    a: "SFTP needs SSH access and permission to run sha256sum. WebDAV and S3-compatible storage need HTTPS. SMB shares must require SMB3 encryption and signing. Without a checksum, Syncophant won't call an upload verified.",
+    a: "SFTP needs SSH access and permission to run sha256sum. WebDAV and S3-compatible storage need HTTPS. SMB shares must require SMB3 encryption and signing. Dropbox, Box and Google Drive need an app you create in that service's developer console; Syncophant shows the steps. Without a checksum, Syncophant won't call an upload verified.",
+  },
+  {
+    q: "Why is Google Drive experimental?",
+    a: "Google Drive lets one folder hold several items with the same name, and it can't refuse a stale write. Syncophant does those checks itself, so a change made elsewhere at the same moment can be lost or duplicated. Google Docs aren't files and are skipped.",
   },
   {
     q: "Do my files take up space on my Mac?",
@@ -77,5 +85,9 @@ export const questions = [
   {
     q: "Which Macs does it run on?",
     a: "Macs with macOS 26 or later.",
+  },
+  {
+    q: "Can I install it with Homebrew?",
+    a: "Yes. Run brew install --cask syncophant-app/tap/syncophant, then brew upgrade keeps it current. The cask is for Apple silicon Macs.",
   },
 ];
