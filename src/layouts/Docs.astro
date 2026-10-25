@@ -1,0 +1,128 @@
+---
+import { getCollection } from "astro:content";
+import Base from "./Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { docSections, sortDocs } from "../data/docs";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  /** The current page's id, so the sidebar can mark it. Empty on the docs home. */
+  current?: string;
+}
+
+const { title, description, current = "" } = Astro.props;
+const docs = sortDocs(await getCollection("docs"));
+const groups = docSections
+  .map((section) => ({ section, pages: docs.filter((d) => d.data.section === section) }))
+  .filter((g) => g.pages.length > 0);
+---
+
+<Base title={current ? `${title} · ${site.name} Docs` : `${site.name} Docs`} description={description}>
+  <Nav />
+  <div class="docs wide">
+    <nav class="docs__nav" aria-label="Docs">
+      <a class="docs__home t-label" href="/docs/" aria-current={current === "" ? "page" : undefined}>Docs home</a>
+      {
+        groups.map(({ section, pages }) => (
+          <div class="docs__group">
+            <p class="t-caption muted">{section}</p>
+            <ul>
+              {pages.map((page) => (
+                <li>
+                  <a href={`/docs/${page.id}/`} aria-current={page.id === current ? "page" : undefined}>
+                    {page.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+    <main class="docs__main">
+      <slot />
+    </main>
+  </div>
+  <Footer />
+</Base>
+
+<style>
+  .docs {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: start;
+    padding-top: var(--space-2xl);
+  }
+
+  .docs__nav {
+    position: sticky;
+    top: 84px;
+    display: grid;
+    gap: var(--space-lg);
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-bottom: var(--space-lg);
+  }
+
+  .docs__group {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .docs__group p {
+    padding-inline: 10px;
+    text-transform: uppercase;
+  }
+
+  .docs__nav a {
+    display: block;
+    padding: 5px 10px;
+    border-radius: var(--radius-row);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition:
+      background-color var(--dur) var(--ease),
+      color var(--dur) var(--ease);
+  }
+
+  .docs__nav a:hover {
+    color: var(--ink);
+    background: var(--fill-1);
+  }
+
+  .docs__nav a[aria-current="page"] {
+    color: var(--ink);
+    background: var(--fill-2);
+    font-weight: 550;
+  }
+
+  .docs__home {
+    color: var(--ink);
+  }
+
+  .docs__main {
+    min-width: 0;
+  }
+
+  /* Narrow screens: the page first, the full list of docs after it. */
+  @media (max-width: 860px) {
+    .docs {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding-top: var(--space-xl);
+    }
+    .docs__nav {
+      order: 1;
+      position: static;
+      max-height: none;
+      padding-top: var(--space-lg);
+      border-top: 0.5px solid var(--line);
+    }
+  }
+</style>

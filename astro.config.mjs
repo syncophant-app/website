@@ -8,4 +8,6 @@ export default defineConfig({
     // Keep CSS in external files so the page stays cacheable.
     inlineStylesheets: "never",
   },
+  // Docs code blocks stay monochrome, like the rest of the site.
+  markdown: { syntaxHighlight: false },
 });

@@ -40,7 +40,8 @@ const jsonLd = {
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       sameAs: [links.repo],
     },
-    {
+    // The FAQ is only on the home page.
+    Astro.url.pathname === "/" && {
       "@type": "FAQPage",
       "@id": `${site.url}/#faq`,
       mainEntity: questions.map(({ q, a }) => ({
@@ -49,7 +50,7 @@ const jsonLd = {
         acceptedAnswer: { "@type": "Answer", text: a },
       })),
     },
-  ],
+  ].filter(Boolean),
 };
 ---
 

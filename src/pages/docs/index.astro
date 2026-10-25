@@ -1,0 +1,111 @@
+---
+import { getCollection } from "astro:content";
+import Docs from "../../layouts/Docs.astro";
+import { docSections, sortDocs } from "../../data/docs";
+import { links } from "../../data/site";
+
+const docs = sortDocs(await getCollection("docs"));
+
+/** One line under each group, saying what kind of page it holds. */
+const blurbs: Record<(typeof docSections)[number], string> = {
+  "Get started": "New to Syncophant? Start here.",
+  Guides: "Steps for one job, and fixes when something goes wrong.",
+  Reference: "Exact facts to look up.",
+  Explanation: "Why Syncophant works the way it does.",
+  Contribute: "Build it, change it, report a problem.",
+};
+---
+
+<Docs
+  title="Docs"
+  description="Guides, troubleshooting and reference for Syncophant, plus how to build it from source and contribute."
+>
+  <header class="intro">
+    <h1 class="t-title">Syncophant Docs</h1>
+    <p class="t-subheading muted">
+      How to connect your storage, what each file status means, how to fix common problems and how to work on the code.
+    </p>
+  </header>
+
+  <div class="groups">
+    {
+      docSections.map((section) => {
+        const pages = docs.filter((d) => d.data.section === section);
+        return (
+          pages.length > 0 && (
+            <section class="group" aria-labelledby={`g-${section.toLowerCase().replace(" ", "-")}`}>
+              <div class="group__head">
+                <h2 id={`g-${section.toLowerCase().replace(" ", "-")}`} class="t-heading">{section}</h2>
+                <p class="t-small muted">{blurbs[section]}</p>
+              </div>
+              <ul class="cards">
+                {pages.map((page) => (
+                  <li>
+                    <a class="card canvas" href={`/docs/${page.id}/`}>
+                      <span class="t-subheading">{page.data.title}</span>
+                      <span class="t-small muted">{page.data.description}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        );
+      })
+    }
+  </div>
+
+  <p class="t-small muted note">
+    Syncophant is an early build. Keep another copy of anything you can't lose. What is finished and what is still being
+    tested is listed in the <a href={links.status}>status page</a>.
+  </p>
+</Docs>
+
+<style>
+  .intro {
+    display: grid;
+    gap: var(--space-md);
+    max-width: 36em;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .groups {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .group__head {
+    display: grid;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-xs);
+    height: 100%;
+    padding: 18px 20px;
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .card:hover {
+    transform: translateY(-1px);
+  }
+
+  .card:focus-visible {
+    border-radius: var(--radius-card);
+  }
+
+  .note {
+    margin-top: var(--space-2xl);
+  }
+</style>

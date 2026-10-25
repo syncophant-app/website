@@ -41,4 +41,9 @@ src/
   components/          Nav, Hero, FinderWindow, MenuBarPanel, Status, Icon, Mark, Lockup, Footer
   components/sections/ WhatItIs, HowItWorks, FileStates, Features, Privacy, WorksWith, Cta, Faq
   pages/index.astro
+  pages/docs/          docs home and one route for every docs page
+  content/docs/        docs pages in Markdown (frontmatter: title, description, section, order)
+  layouts/Docs.astro   docs sidebar and page frame
 ```
+
+To add a docs page, drop a Markdown file in `src/content/docs/`. Sections are listed in `src/data/docs.ts`. The sitemap is built from the same collection.
