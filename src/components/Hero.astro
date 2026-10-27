@@ -24,6 +24,14 @@ import { brewInstall, links, site } from "../data/site";
     <p class="t-small muted hero__brew">
       Or with <a href={links.tap}>Homebrew</a>: <code class="t-mono">{brewInstall}</code>
     </p>
+    <div class="hero__badges">
+      <a href="https://usefulshelf.co/?utm_source=syncophant.app&amp;utm_medium=referral&amp;utm_campaign=badge&amp;utm_content=light" target="_blank" rel="nofollow noopener">
+        <img src="https://usefulshelf.co/badge/usefulshelf.svg" alt="Featured on UsefulShelf" width="248" height="66" />
+      </a>
+      <a href="https://www.trymacapps.com" target="_blank" rel="noopener">
+        <img src="https://www.trymacapps.com/badge.png" alt="Featured on TryMacApps" width="200" height="67" />
+      </a>
+    </div>
   </div>
 
   <div class="stage wide">
@@ -97,6 +105,20 @@ import { brewInstall, links, site } from "../data/site";
     justify-content: center;
     gap: var(--space-md);
     margin-top: var(--space-sm);
+  }
+
+  .hero__badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+
+  .hero__badges img {
+    width: auto;
+    height: clamp(36px, 8vw, 48px);
+    border-radius: var(--radius-tile);
+    background: #fff;
   }
 
   /* The desktop: a monochrome wallpaper made from the light field. */
